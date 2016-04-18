@@ -35,8 +35,7 @@ int main ( int argc, char *argv[] )
         if (argc != 2) {
                 ferror(KWHT"\nMust enter an argument: Input file\n\n");
                 printf(KNRM);
-        }
-        else {
+        } else {
                 FILE* matrix_description_file = (argv[1], "r"); 
                 int **matrix_A = build_matrix(matrix_description_file); 
                 int **matrix_B = build_matrix(matrix_description_file); 
