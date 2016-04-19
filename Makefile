@@ -6,10 +6,10 @@ EXEC = matrix-multiplier
 $(EXEC): $(OBJ)
 	$(CC) $(OBJ) -o $(EXEC)
 
-matrix-multiplier.o: matrix-multiplier.c ansi-color.h matrix.h
+matrix-multiplier.o: matrix-multiplier.c ansi-color.h matrix.h matrix-builder.h
 	$(CC) -c matrix-multiplier.c $(CFLAGS)
 
-matrix-builder.o: matrix-builder.c util.h matrix.h
+matrix-builder.o: matrix-builder.c util.h matrix.h ansi-color.h
 	$(CC) -c matrix-builder.c $(CFLAGS)
 
 clean:
