@@ -1,5 +1,5 @@
 /*
- * =============================================================================
+ * ==============================================================================
  *
  *       Filename:  matrix-multiplier.c
  *
@@ -13,7 +13,7 @@
  *         Author:  CHRIS GARLAND (15560955), c.garland@student.curtin.edu.au
  *   Organization:  
  *
- * ============================================================================
+ * ==============================================================================
  */
 #include "ansi-color.h"    /*Ansi colour coding used for output to sdtout*/ 
 #include "matrix.h"
@@ -25,14 +25,14 @@
 /*#define TEST_PRINT*/
 
 /* 
- * ===  FUNCTION  =============================================================
+ * ===  FUNCTION  ===============================================================
  *         Name:  main
  *  Description:  Wrapper for matrix multiplier. Takes a description file, 
  *                builds the data structures & multiplies the matrices
  *
  *        Input:  Matrix description file
  *       Output:  Product of two matrices
- * =============================================================================
+ * ==============================================================================
  */
 int main ( int argc, char *argv[] )
 {       

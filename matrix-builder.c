@@ -10,7 +10,7 @@
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  CHRIS GARLAND (), c.garland@student.curtin.edu.au
+ *         Author:  CHRIS GARLAND (15560955), c.garland@student.curtin.edu.au
  *   Organization:  
  *
  * =============================================================================
