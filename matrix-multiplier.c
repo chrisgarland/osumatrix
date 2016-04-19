@@ -24,7 +24,7 @@
 #define TEST_PRINT
 
 /* 
- * ===  FUNCTION  ============================================================
+ * ===  FUNCTION  =============================================================
  *         Name:  main
  *  Description:  Wrapper for matrix multiplier. Takes a description file, 
  *                builds the data structures & multiplies the matrices
@@ -39,10 +39,11 @@ int main ( int argc, char *argv[] )
                 perror(KWHT"\nMust enter an argument: Input file\n\n");
                 printf(KNRM);
         } else {
-                FILE* matrix_description_file = (argv[1], "r"); 
-                Matrix *matrix_A = build_matrix(matrix_description_file); 
-                Matrix *matrix_B = build_matrix(matrix_description_file); 
-                Matrix *matrix_C = multiply_matricies(matrix_A, matrix_B);
+                FILE* description_file_A = (argv[1], "r"); 
+                FILE* description_file_B = (argv[2], "r"); 
+                Matrix *matrix_A = build_matrix(description_file_A); 
+                /*Matrix *matrix_B = build_matrix(description_file_B); */
+                /*Matrix *matrix_C = multiply_matricies(matrix_A, matrix_B);*/
                 
                 #ifdef TEST_PRINT 
                         os200_print_matrix(matrix_A);
