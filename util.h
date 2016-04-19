@@ -25,7 +25,7 @@
 /* 
  * ===  FUNCTION  ==============================================================
  *         Name:  truncate_file
- *  Description:  Cuts the first two lines off a file
+ *  Description:  Cuts a predetermined number of lines off the top of a file
  *
  *        Input:  input_file, number of lines to be truncated
  *       Output:  Exit status: 0 = success; non-zero = failure
