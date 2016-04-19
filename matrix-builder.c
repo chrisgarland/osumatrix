@@ -16,25 +16,40 @@
  * =============================================================================
  */
 #include "util.h"
+#include "matrix.h"
 
 #include <stdlib.h>
+
+
+
+/* 
+ * ===  FUNCTION  ==============================================================
+ *         Name:  get_matrix_dimensions
+ *  Description:  
+ * =============================================================================
+ */
+void get_matrix_dimensions (int *num_rows, int *num_colums)
+{
+        j
+}	/* -----  end of function get_matrix_dimensions  ----- */
+
 
 /* 
  * ===  FUNCTION  ==============================================================
  *         Name:  build_matrix
- *  Description:  
+ *  Description:  Wrapper for the actual construction of a matrix. Uses 2D array
+ *
+ *        Input:  Matrix description file
+ *       Output:  2 dimentional array representation of a matrix
  * =============================================================================
  */
-char** build_matrix (FILE* _input_file)
+Matrix* build_matrix (FILE* _input_file)
 {
-        char *line_buffer;
-        char *word_buffer;
-        int num_rows;
-        int num_colums;
+        Matrix *new_matrix;
 
         truncate_file(_input_file, 2);   /*cuts the first 2 lines off the file*/ 
+        get_matrix_dimensions(_input_file, new_matrix);
 
-
-        return <+return value+>;
+        return new_matrix;
 }	/* -----  end of function build_matrix  ----- */
 
