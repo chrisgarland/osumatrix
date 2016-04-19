@@ -19,6 +19,7 @@
 #define UTIL_H
 
 #include <stdlib.h>
+#include <stdio.h>
 
 #define MAX_LINE_LENGTH    80
 

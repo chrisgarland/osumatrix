@@ -17,11 +17,12 @@
  */
 #include "ansi-color.h"    /*Ansi colour coding used for output to sdtout*/ 
 #include "matrix.h"
+#include "matrix-builder.h"
 
 #include <stdlib.h>
 #include <stdio.h>
 
-#define TEST_PRINT
+/*#define TEST_PRINT*/
 
 /* 
  * ===  FUNCTION  =============================================================
@@ -34,22 +35,25 @@
  * =============================================================================
  */
 int main ( int argc, char *argv[] )
-{
-        if (argc != 2) {
+{       
+        if (argc != 3) {
                 perror(KWHT"\nMust enter an argument: Input file\n\n");
                 printf(KNRM);
         } else {
-                FILE* description_file_A = (argv[1], "r"); 
-                FILE* description_file_B = (argv[2], "r"); 
+                FILE* description_file_A = fopen(argv[1], "r"); 
+                FILE* description_file_B = fopen(argv[2], "r"); 
                 Matrix *matrix_A = build_matrix(description_file_A); 
-                /*Matrix *matrix_B = build_matrix(description_file_B); */
+                Matrix *matrix_B = build_matrix(description_file_B); 
                 /*Matrix *matrix_C = multiply_matricies(matrix_A, matrix_B);*/
                 
-                #ifdef TEST_PRINT 
-                        os200_print_matrix(matrix_A);
-                        os200_print_matrix(matrix_B);
-                        os200_print_matrix(matrix_C);
-                #endif
+                /*#ifdef TEST_PRINT */
+                        /*os200_print_matrix(matrix_A);*/
+                        /*os200_print_matrix(matrix_B);*/
+                        /*os200_print_matrix(matrix_C);*/
+                /*#endif*/
+
+                free(matrix_A);
+                free(matrix_B);
         }
         return EXIT_SUCCESS;
 }		/* ----------  end of function main  ---------- */

@@ -17,8 +17,10 @@
  */
 #include "util.h"
 #include "matrix.h"
+#include "ansi-color.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 
 #define TEST_PRINT
 
@@ -37,8 +39,8 @@
 void get_matrix_dimensions (FILE* _input_file, Matrix* _matrix)
 {
         int scan_status;
-        scan_status = fcanf(_input_file, "%d   %d", &(_matrix->num_rows), 
-                                                &(_matrix->num_columns));
+        scan_status = fscanf(_input_file, "%dx%d", &(_matrix->num_rows),       \
+                                               &(_matrix->num_columns));
         if (scan_status != 2) {
                 printf(KWHT);
                 perror("Error scanning matrix dimensions");
@@ -59,7 +61,7 @@ void get_matrix_dimensions (FILE* _input_file, Matrix* _matrix)
  */
 Matrix* build_matrix (FILE* _input_file)
 {
-        Matrix *new_matrix;
+        Matrix *new_matrix = malloc(sizeof(*new_matrix));
 
         truncate_file(_input_file, 2);   /*cuts the first 2 lines off the file*/ 
         get_matrix_dimensions(_input_file, new_matrix);
