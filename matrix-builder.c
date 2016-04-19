@@ -20,17 +20,31 @@
 
 #include <stdlib.h>
 
+#define TEST_PRINT
 
 
 /* 
  * ===  FUNCTION  ==============================================================
  *         Name:  get_matrix_dimensions
- *  Description:  
+ *  Description:  Retrieves the dimensions of a matrix from the input file and 
+ *                assigns the appropriate values within the Matrix struct
+ *
+ *        Input:  Takes a Matrix struct as input
+ *       Output:  None
+ *       Return:  void
  * =============================================================================
  */
-void get_matrix_dimensions (int *num_rows, int *num_colums)
+void get_matrix_dimensions (FILE* _input_file, Matrix* _matrix)
 {
-        j
+        int scan_status;
+        scan_status = fcanf(_input_file, "%d   %d", &(_matrix->num_rows), 
+                                                &(_matrix->num_columns));
+        if (scan_status != 2) {
+                printf(KWHT);
+                perror("Error scanning matrix dimensions");
+                printf(KNRM);
+                exit(EXIT_FAILURE);
+        }
 }	/* -----  end of function get_matrix_dimensions  ----- */
 
 
@@ -49,6 +63,11 @@ Matrix* build_matrix (FILE* _input_file)
 
         truncate_file(_input_file, 2);   /*cuts the first 2 lines off the file*/ 
         get_matrix_dimensions(_input_file, new_matrix);
+
+        #ifdef TEST_PRINT
+                printf(KWHT"\nNumber Rows: %d\nNumber Columns: %d\n\n"KNRM, 
+                                new_matrix->num_rows, new_matrix->num_columns);
+        #endif
 
         return new_matrix;
 }	/* -----  end of function build_matrix  ----- */
