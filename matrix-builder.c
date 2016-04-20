@@ -66,7 +66,7 @@ void setup_matrix (FILE* _input_file, Matrix* _matrix)
         char *line_buffer;
         int ii, jj; /* for loops */ 
 
-        delimiters = " \n\t[] ";
+        delimiters = " \n\t ";
 
         allocate_matrix(_matrix);
 
@@ -86,31 +86,6 @@ void setup_matrix (FILE* _input_file, Matrix* _matrix)
 
 /* 
  * ===  FUNCTION  ==============================================================
- *         Name:  get_matrix_dimensions
- *  Description:  Retrieves the dimensions of a matrix from the input file and 
- *                assigns the appropriate values within the Matrix struct
- *
- *        Input:  Takes a Matrix struct as input
- *       Output:  None
- *       Return:  void
- * =============================================================================
- */
-void get_matrix_dimensions (FILE* _input_file, Matrix* _matrix)
-{
-        int scan_status;
-        scan_status = fscanf(_input_file, "%dx%d ", &(_matrix->num_rows),       \
-                                               &(_matrix->num_columns));
-        if (scan_status != 2) {
-                printf(KWHT);
-                perror("Error scanning matrix dimensions");
-                printf(KNRM);
-                exit(EXIT_FAILURE);
-        }
-}	/* -----  end of function get_matrix_dimensions  ----- */
-
-
-/* 
- * ===  FUNCTION  ==============================================================
  *         Name:  build_matrix
  *  Description:  Wrapper for the actual construction of a matrix. Uses 2D array
  *
@@ -118,13 +93,15 @@ void get_matrix_dimensions (FILE* _input_file, Matrix* _matrix)
  *       Output:  2 dimentional array representation of a matrix
  * =============================================================================
  */
-Matrix* build_matrix (FILE* _input_file)
+Matrix* build_matrix (FILE* _input_file, char* _num_rows, char* _num_cols)
 {
         Matrix* new_matrix;
         new_matrix = malloc(sizeof(*new_matrix));
+        
+        new_matrix->num_rows = atoi( _num_rows);
+        new_matrix->num_columns = atoi(_num_cols);
 
         truncate_file(_input_file, 2);   /*cuts the first 2 lines off the file*/ 
-        get_matrix_dimensions(_input_file, new_matrix);
         setup_matrix(_input_file, new_matrix);
 
         #ifdef TEST_PRINT

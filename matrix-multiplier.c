@@ -59,14 +59,15 @@ void cleanup_resources ()
  */
 int main ( int argc, char *argv[] )
 {       
-        if (argc != 3) {
-                perror(KWHT"\nMust enter 2 arguments: Input/Output files\n\n");
-                printf(KNRM);
+        if (argc != 6) {
+                perror(KWHT"\nMust enter 5 arguments: Input/Output files +"     \
+                                               " 3 matrix dimensions");
+                printf("\n"KNRM);
         } else {
                 description_file_A = fopen(argv[1], "r"); 
                 description_file_B = fopen(argv[2], "r"); 
-                matrix_A = build_matrix(description_file_A); 
-                matrix_B = build_matrix(description_file_B);
+                matrix_A = build_matrix(description_file_A, argv[3], argv[4]); 
+                matrix_B = build_matrix(description_file_B, argv[4], argv[5]);
                 
                 #ifdef TEST_PRINT 
                         os200_print_matrix(matrix_A);

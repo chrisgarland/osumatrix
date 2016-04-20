@@ -24,9 +24,7 @@ void allocate_matrix (Matrix* _matrix);
 
 void setup_matrix (FILE* _input_file, Matrix* _matrix);
 
-void get_matrix_dimensions (FILE* _input_file, Matrix* _matrix);
-
-Matrix* build_matrix (FILE* _input_file);
+Matrix* build_matrix (FILE* _input_file, char* _num_rows, char* _num_cols);
 
 #endif /* ifndef MATRIX_BUILDER_H */
 
