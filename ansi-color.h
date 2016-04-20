@@ -16,6 +16,9 @@
  * ==============================================================================
  */
 
+#ifndef ANSI_COLOR_H
+#define ANSI_COLOR_H
+
 #define KNRM  "\x1B[0m"   /* End colour tag: Necessary */ 
 
 #define KRED  "\x1B[31m"  /* Red */ 
@@ -25,4 +28,6 @@
 #define KMAG  "\x1B[35m"  /* MAGENTA */
 #define KCYN  "\x1B[36m"  /* CYN? */
 #define KWHT  "\x1B[37m"  /* WHITE */
+
+#endif /* ifndef ANSI_COLOR_H */
 
