@@ -20,11 +20,13 @@
 
 #include <stdio.h>
 
+Matrix* build_c (int _num_rows, int _num_cols);
+
 void allocate_matrix (Matrix* _matrix);
 
 void setup_matrix (FILE* _input_file, Matrix* _matrix);
 
-Matrix* build_matrix (FILE* _input_file, char* _num_rows, char* _num_cols);
+Matrix* build_matrix (FILE* _input_file, int _num_rows, int _num_cols);
 
 #endif /* ifndef MATRIX_BUILDER_H */
 

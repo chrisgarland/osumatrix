@@ -1,82 +1,59 @@
 /*
- * ==============================================================================
+ * =============================================================================
  *
  *       Filename:  matrix-multiplier.c
  *
- *    Description:  Implementation of a matrix multiplier. Contains main()
+ *    Description:  The actual matrix multiplication happens here
  *
  *        Version:  1.0
- *        Created:  18/04/2016 21:17:05
+ *        Created:  20/04/2016 18:30:43
  *       Revision:  none
  *       Compiler:  gcc
  *
  *         Author:  CHRIS GARLAND (15560955), c.garland@student.curtin.edu.au
  *   Organization:  
  *
- * ==============================================================================
+ * =============================================================================
  */
-#include "ansi-color.h"    /*Ansi colour coding used for output to sdtout*/ 
+
 #include "matrix.h"
-#include "matrix-builder.h"
-#include "util.h"
 
 #include <stdlib.h>
-#include <stdio.h>
-
-#define TEST_PRINT
-
-/* Global variables only used for freeing resources */
-FILE* description_file_A;
-FILE* description_file_B;
-Matrix* matrix_A;
-Matrix* matrix_B;
-
 
 /* 
- * ===  FUNCTION  ===============================================================
- *         Name:  cleanup_resources
- *  Description:  Close all files and free all previously allocated heap memory
- * ==============================================================================
- */
-void cleanup_resources ()
-{
-        fclose(description_file_A);
-        fclose(description_file_B);
-        free(matrix_A);
-        free(matrix_B);
-}	/* -----  end of function cleanup_resources  ----- */
-
-
-/* 
- * ===  FUNCTION  ===============================================================
- *         Name:  main
- *  Description:  Wrapper for matrix multiplier. Takes a description file, 
- *                builds the data structures & multiplies the matrices
+ * ===  FUNCTION  ==============================================================
+ *         Name:  multiply_matrices
+ *  Description:  This is where the actual matrix multiplication happens
  *
- *        Input:  Matrix description file
- *       Output:  Product of two matrices
- * ==============================================================================
+ *        Input:  matrices A and B are to be multiplied. The value is stored in
+ *                product matrix.
+ *       Output:  If operation successful, returns EXIT_SUCCESS (0)
+ * =============================================================================
  */
-int main ( int argc, char *argv[] )
-{       
-        if (argc != 6) {
-                perror(KWHT"\nMust enter 5 arguments: Input/Output files +"     \
-                                               " 3 matrix dimensions");
-                printf("\n"KNRM);
-        } else {
-                description_file_A = fopen(argv[1], "r"); 
-                description_file_B = fopen(argv[2], "r"); 
-                matrix_A = build_matrix(description_file_A, argv[3], argv[4]); 
-                matrix_B = build_matrix(description_file_B, argv[4], argv[5]);
-                
-                #ifdef TEST_PRINT 
-                        os200_print_matrix(matrix_A);
-                        os200_print_matrix(matrix_B);
-                        /*os200_print_matrix(matrix_C);*/
-                #endif
+int multiply_matrices (Matrix* matrix_A, Matrix* matrix_B, 
+                                   Matrix* product_matrix)
+{
+        int ac_rows, a_cols_b_rows, bc_cols;
+        int ii, jj, kk;                         /* for loops */ 
 
-                cleanup_resources();
+        ac_rows = matrix_A->num_rows;           /* M */ 
+        a_cols_b_rows = matrix_A->num_columns;  /* N */ 
+        bc_cols = matrix_B->num_columns;        /* K */ 
+
+        for (ii = 0; ii < ac_rows; ii++) {
+
+                for (jj = 0; jj < bc_cols; jj++) {
+                        /* Initialise all elements in C to 0 */
+                        product_matrix->matrix[ii][jj] = 0;
+                        
+                        for (kk = 0; kk < a_cols_b_rows; kk++) {
+                                product_matrix->matrix[ii][jj] +=
+                                matrix_A->matrix[ii][kk] * 
+                                matrix_B->matrix[kk][jj];
+                        }
+                }
         }
+
         return EXIT_SUCCESS;
-}		/* ----------  end of function main  ---------- */
+}	/* -----  end of function multiply_matrices  ----- */
 

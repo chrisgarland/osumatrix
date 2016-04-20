@@ -1,16 +1,19 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic -ansi
-OBJ = matrix-multiplier.o matrix-builder.o util.o
-EXEC = matrix-multiplier
+OBJ = pmms.o matrix-builder.o matrix-multiplier.o util.o
+EXEC = pmms
 
 $(EXEC): $(OBJ)
 	$(CC) $(OBJ) -o $(EXEC)
 
-matrix-multiplier.o: matrix-multiplier.c ansi-color.h matrix.h matrix-builder.h util.h
-	$(CC) -c matrix-multiplier.c $(CFLAGS)
+pmms.o: pmms.c ansi-color.h matrix.h matrix-builder.h matrix-multiplier.h util.h
+	$(CC) -c pmms.c $(CFLAGS)
 
 matrix-builder.o: matrix-builder.c util.h matrix.h ansi-color.h
 	$(CC) -c matrix-builder.c $(CFLAGS)
+
+matrix-multiplier.o: matrix-multiplier.c matrix.h
+	$(CC) -c matrix-multiplier.c $(CFLAGS)
 
 util.o: util.c matrix.h ansi-color.h
 	$(CC) -c util.c $(CFLAGS)

@@ -52,6 +52,30 @@ void allocate_matrix (Matrix* _matrix)
 
 /* 
  * ===  FUNCTION  ==============================================================
+ *         Name:  build_c
+ *  Description:  Responsible for building and returning the product matrix C.
+ *                The values inside the matrix wil not yet be assigned.
+ *
+ *        Input:  Received from commandline
+ *       Return:  Malloc'd matrix
+ * =============================================================================
+ */
+Matrix* build_c (int _num_rows, int _num_cols)
+{
+        Matrix* new_matrix;
+        new_matrix = malloc(sizeof(*new_matrix));
+        
+        new_matrix->num_rows = _num_rows;
+        new_matrix->num_columns = _num_cols;
+
+        allocate_matrix(new_matrix);
+
+        return new_matrix;
+}	/* -----  end of function build_c  ----- */
+
+
+/* 
+ * ===  FUNCTION  ==============================================================
  *         Name:  setup_matrix
  *  Description:  Responsible for allocating the 2D array and read/writing the 
  *                values from file to the newly allocated array
@@ -93,13 +117,13 @@ void setup_matrix (FILE* _input_file, Matrix* _matrix)
  *       Output:  2 dimentional array representation of a matrix
  * =============================================================================
  */
-Matrix* build_matrix (FILE* _input_file, char* _num_rows, char* _num_cols)
+Matrix* build_matrix (FILE* _input_file, int _num_rows, int _num_cols)
 {
         Matrix* new_matrix;
         new_matrix = malloc(sizeof(*new_matrix));
         
-        new_matrix->num_rows = atoi( _num_rows);
-        new_matrix->num_columns = atoi(_num_cols);
+        new_matrix->num_rows = _num_rows;
+        new_matrix->num_columns = _num_cols;
 
         truncate_file(_input_file, 2);   /*cuts the first 2 lines off the file*/ 
         setup_matrix(_input_file, new_matrix);
