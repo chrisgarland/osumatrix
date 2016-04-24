@@ -20,11 +20,12 @@
 #include "matrix-builder.h"
 #include "matrix-multiplier.h"
 #include "util.h"
+#include "process-control.h"
 
 #include <stdlib.h>
 #include <stdio.h>
 
-#define TEST_PRINT
+/*#define TEST_PRINT*/
 
 /* Global variables only used for freeing resources */
 FILE* description_file_A;
@@ -91,6 +92,8 @@ int main ( int argc, char *argv[] )
                         os200_print_matrix(matrix_B);
                         os200_print_matrix(matrix_C);
                 #endif
+
+                process_controller(matrix_C);
 
                 cleanup_resources();
         }
