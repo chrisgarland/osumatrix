@@ -1,8 +1,10 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=c99
-OBJ = pmms.o matrix-builder.o matrix-multiplier.o util.o process-control.o
+OBJ = pmms.o matrix-builder.o matrix-multiplier.o util.o process-control.o \
+      thread-control.o
 PMMS_DEPENDENCIES = pmms.c ansi-color.h matrix.h matrix-builder.h \
-		    matrix-multiplier.h util.h process-control.h
+		    matrix-multiplier.h util.h process-control.h \
+		    thread-control.h
 P_CONTROL_DEPEND = process-control.c subtotal.h os-semaphore.h matrix.h \
 		   ansi-color.h
 EXEC = pmms
@@ -25,6 +27,9 @@ util.o: util.c matrix.h ansi-color.h
 
 process-control.o: $(P_CONTROL_DEPEND)
 	$(CC) -c process-control.c $(CFLAGS)
+
+thread-control.o: thread-control.c matrix.h subtotal.h ansi-color.h
+	$(CC) -c thread-control.c $(CFLAGS)
 
 clean:
 	rm -rf $(EXEC) $(OBJ) $(EXTRA_OUTPUT)
