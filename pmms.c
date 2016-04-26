@@ -21,6 +21,7 @@
 #include "matrix-multiplier.h"
 #include "util.h"
 #include "process-control.h"
+#include "thread-control.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -94,6 +95,7 @@ int main ( int argc, char *argv[] )
                 #endif
 
                 process_controller(matrix_C);
+                thread_controller(matrix_C);
 
                 cleanup_resources();
         }
