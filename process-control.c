@@ -80,7 +80,7 @@ static int consume_data (int n)
                 sem_wait(semaphore->mutex);
 
                 printf(KWHT"Subtotal produced by process with ID %d: %d\n"KNRM, 
-                                            stotal_s->pid, stotal_s->subtotal);
+                                            stotal_s->id, stotal_s->subtotal);
                 total += stotal_s->subtotal;
 
                 sem_post(semaphore->mutex);
@@ -97,13 +97,12 @@ static int consume_data (int n)
 /* 
  * ===  FUNCTION  ==============================================================
  *         Name:  set_subtotal
- *  Description:  Calculates and returns the sum of a matrix row
+ *  Description:  Producer. Calculates and returns the sum of a matrix row
  * =============================================================================
  */
 static int get_subtotal (int* _matrix, int num_cols)
 {
-        int subtotal;
-        subtotal = 0;
+        int subtotal = 0;
 
         for (int ii = 0; ii < num_cols; ++ii) {
                 subtotal += _matrix[ii];
@@ -137,14 +136,13 @@ static void start_children (pid_t* pids, Matrix* _matrix)
 
                         stotal_s->subtotal = get_subtotal(_matrix->matrix[ii], 
                                                                     NUM_COLS);
-                        stotal_s->pid = (int)getpid();
+                        stotal_s->id = (int)getpid();
 
                         sem_post(semaphore->mutex);
                         sem_post(semaphore->full);
                         exit(EXIT_SUCCESS);
                 }
         }
-
 }	/* -----  end of function start_children  ----- */
 
 
