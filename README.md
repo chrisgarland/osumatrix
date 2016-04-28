@@ -1,4 +1,4 @@
 # osumatrix
 
-Summation of a matrix product — A multi-threaded solution
+Summation of a matrix product — A multi-threaded approach
 
