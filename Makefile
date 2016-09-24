@@ -1,36 +1,39 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=c99
-OBJ = pmms.o matrix-builder.o matrix-multiplier.o util.o process-control.o \
-      thread-control.o
-PMMS_DEPENDENCIES = pmms.c ansi-color.h matrix.h matrix-builder.h \
-		    matrix-multiplier.h util.h process-control.h \
-		    thread-control.h
-P_CONTROL_DEPEND = process-control.c subtotal.h os-semaphore.h matrix.h \
-		   ansi-color.h
-EXEC = pmms
+#VPATH = src:../include
+#BINDIR = bin/
+#SRCDIR = src/
+OBJ = src/pmms.o src/matrix-builder.o src/matrix-multiplier.o src/util.o src/process-control.o \
+      src/thread-control.o
+PMMS_DEPENDENCIES = src/pmms.c include/ansi-color.h include/matrix.h include/matrix-builder.h \
+		    include/matrix-multiplier.h include/util.h include/process-control.h \
+		    include/thread-control.h
+P_CONTROL_DEPEND = src/process-control.c include/subtotal.h include/os-semaphore.h include/matrix.h \
+		   include/ansi-color.h
+EXEC = bin/pmms
 EXTRA_OUTPUT = psout
 
-$(EXEC): $(OBJ)
+$(BINDIR)$(EXEC): $(OBJ)
 	$(CC) $(OBJ) -o $(EXEC)
 
 pmms.o: $(PMMS_DEPENDENCIES)
 	$(CC) -c pmms.c $(CFLAGS)
 
-matrix-builder.o: matrix-builder.c util.h matrix.h ansi-color.h
+matrix-builder.o: src/matrix-builder.c include/util.h include/matrix.h include/ansi-color.h
 	$(CC) -c matrix-builder.c $(CFLAGS)
 
-matrix-multiplier.o: matrix-multiplier.c matrix.h
+matrix-multiplier.o: src/matrix-multiplier.c include/matrix.h
 	$(CC) -c matrix-multiplier.c $(CFLAGS)
 
-util.o: util.c matrix.h ansi-color.h
+util.o: src/util.c include/matrix.h include/ansi-color.h
 	$(CC) -c util.c $(CFLAGS)
 
 process-control.o: $(P_CONTROL_DEPEND)
 	$(CC) -c process-control.c $(CFLAGS)
 
-thread-control.o: thread-control.c matrix.h subtotal.h ansi-color.h
+thread-control.o: src/thread-control.c include/matrix.h include/subtotal.h include/ansi-color.h
 	$(CC) -c thread-control.c $(CFLAGS)
 
 clean:
-	rm -rf $(EXEC) $(OBJ) $(EXTRA_OUTPUT)
+	rm -rf $(EXEC) $(OBJ) `find . -name "*$(EXTRA_OUTPUT)*"`
 

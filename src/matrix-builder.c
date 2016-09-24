@@ -15,9 +15,9 @@
  *
  * =============================================================================
  */
-#include "util.h"
-#include "matrix.h"
-#include "ansi-color.h"
+#include "../include/util.h"
+#include "../include/matrix.h"
+#include "../include/ansi-color.h"
 
 #include <stdlib.h>
 #include <stdio.h>

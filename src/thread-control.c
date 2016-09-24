@@ -17,9 +17,9 @@
  *
  * =============================================================================
  */
-#include "matrix.h"
-#include "subtotal.h"
-#include "ansi-color.h"
+#include "../include/matrix.h"
+#include "../include/subtotal.h"
+#include "../include/ansi-color.h"
 
 #include <stdlib.h>
 #include <stdio.h>

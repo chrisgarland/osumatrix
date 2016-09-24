@@ -15,10 +15,10 @@
  *
  * =============================================================================
  */
-#include "subtotal.h"
-#include "os-semaphore.h"
-#include "matrix.h"
-#include "ansi-color.h"
+#include "../include/subtotal.h"
+#include "../include/os-semaphore.h"
+#include "../include/matrix.h"
+#include "../include/ansi-color.h"
 
 #include <stdlib.h>
 #include <stdio.h>

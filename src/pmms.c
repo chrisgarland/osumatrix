@@ -15,13 +15,13 @@
  *
  * =============================================================================
  */
-#include "ansi-color.h"    /*Ansi colour coding used for output to sdtout*/ 
-#include "matrix.h"
-#include "matrix-builder.h"
-#include "matrix-multiplier.h"
-#include "util.h"
-#include "process-control.h"
-#include "thread-control.h"
+#include "../include/ansi-color.h"    /*Ansi colour coding used for output to sdtout*/ 
+#include "../include/matrix.h"
+#include "../include/matrix-builder.h"
+#include "../include/matrix-multiplier.h"
+#include "../include/util.h"
+#include "../include/process-control.h"
+#include "../include/thread-control.h"
 
 #include <stdlib.h>
 #include <stdio.h>
